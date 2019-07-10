@@ -69,6 +69,9 @@ linux-node3.example.com
 
 ```
 3. 关闭SELinux和防火墙
+systemctl disable firewalld NetworkManager
+systemctl stop firewalld NetworkManager
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g'  /etc/selinux/config 
 4. 更新yum源
 [root@linux-node1 ~]# rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
 5. 安装一些依赖包
