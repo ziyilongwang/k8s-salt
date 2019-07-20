@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hook-deployment-stop2
+  namespace: test
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.13.12
+        volumeMounts:
+        - name: stopmessage
+          mountPath: /tmp
+        ports:
+        - containerPort: 80
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/bash","-c","echo prestop  > /tmp/health"]
+      volumes:
+      - name: stopmessage
+        hostPath:
+         path: /tmp
