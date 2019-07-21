@@ -1,0 +1,33 @@
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: nfs-client-provisioner
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nfs-client-provisioner
+    spec:
+      serviceAccountName: ttt
+      containers:
+        - name: nfs-client-provisioner
+          image: registry.devopsedu.com:5000/devops/nfs-client-provisioner:v1
+          volumeMounts:
+            - name: nfs-client-root
+              mountPath: /persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: fuseim.pri/ifs
+            - name: NFS_SERVER
+              value: linux-node1.example.com 
+            - name: NFS_PATH
+              value: /export/k8s
+      volumes:
+        - name: nfs-client-root
+          nfs:
+            server: linux-node1.example.com
+            path: /export/k8s
