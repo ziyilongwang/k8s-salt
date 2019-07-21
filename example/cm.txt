@@ -1,0 +1,84 @@
+
+将文件内容映射为env环境变量
+1、kubectl create cm sass-2env  --from-env-file=pro.conf 
+
+2、[root@linux-node1 configmap]# cat cm-env.yaml 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testcm2-pod
+spec:
+  containers:
+    - name: testcm2
+      image: nginx:1.13.12 
+      command: [ "/bin/sh", "-c", "echo $(DB_HOST) $(DB_PORT)" ]
+      env:
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: sass-2env
+              key: host
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: sass-2env
+              key: port
+2、将整个目录作为配置文件进行管理：
+kubectl create cm sass-file2  --from-file=${a}/
+[root@linux-node1 configmap]# cat cm-multifile.yaml 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testcm3-pod
+spec:
+  containers:
+    - name: testcm3
+      image: nginx:1.13.12 
+      volumeMounts:
+      - name: config-volume
+        mountPath: /tmp
+  volumes:
+    - name: config-volume
+      configMap:
+        name: sass-file2
+
+3、  
+
+ apiVersion: v1
+data:
+  pro: |
+    [abac]
+    test="http://abc.test"
+    passwd="123456"
+    user="zero"
+  test: |
+    abcurl="http://abc.test"
+    redis="1.1.1.1:3306"
+    passwd="123456"
+    user="zero"
+kind: ConfigMap
+metadata:
+  name: my-config3
+  namespace: default
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testcm5-pod
+spec:
+  containers:
+    - name: testcm5
+      image: nginx:1.13.12 
+      volumeMounts:
+      - name: config-volume
+        mountPath: /etc/config
+  volumes:
+    - name: config-volume
+      configMap:
+        name: my-config3 
+        items:
+        - key: pro
+          path: to/redis.conf 
+
+
