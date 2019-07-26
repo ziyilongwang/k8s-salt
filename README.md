@@ -138,7 +138,7 @@ sed -i 's/SELINUX=enforcing/SELINUX=disabled/g'  /etc/selinux/config
 
 2.2 获取本项目代码，并放置在/srv目录
 ```
-[root@linux-node1 ~]# git clone https://github.com/unixhot/salt-kubernetes.git
+[root@linux-node1 ~]# git clone https://github.com/ziyilongwang/k8s-salt.git
 [root@linux-node1 ~]# cd salt-kubernetes/
 [root@linux-node1 ~]# mv * /srv/
 [root@linux-node1 srv]# /bin/cp /srv/roster /etc/salt/roster
