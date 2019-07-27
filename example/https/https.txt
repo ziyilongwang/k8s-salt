@@ -1,0 +1,24 @@
+openssl genrsa -out zero.key 2048 
+openssl req -x509 -nodes -days 2920 -newkey rsa:2048 -keyout zero.key -out zero.crt -subj "/CN=*.idcsec.com/O=nginxsvc"
+
+kubectl create secret tls https-secret --key zero.key --cert zero.crt
+
+[root@linux-node1 https]# cat nginx-ingress.yaml 
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-https
+spec:
+  tls:
+  - hosts:
+    - test.idcsec.com
+    secretName: https-secret
+  rules:
+  - host: test.idcsec.com
+    http:
+      paths:
+      - backend:
+          serviceName: nginx-service 
+          servicePort: 80
+
+
