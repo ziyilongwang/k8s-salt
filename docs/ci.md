@@ -7,9 +7,10 @@ CI(Continuous Integration)持续集成，CD(Continuous Delivery) 持续交付
 4、定位问题复杂
 
 ### CI价值
-1、降低风险：静态代码分析，尽早发现bug
-2、自动化：自动化编译、自动化测试、自动部署、自动审查、自动反馈
-3、随时发布
+1.二进制包准备降低风险：静态代码分析，尽早发现bug
+
+2.自动化：自动化编译、自动化测试、自动部署、自动审查、自动反馈
+3.随时发布
 
 ### 重点
 为了提高代码质量已经每次发布到beta环境服务的稳定性，要提高自动化测试覆盖率（不仅限于接口自动化测试）
@@ -27,9 +28,9 @@ CI(Continuous Integration)持续集成，CD(Continuous Delivery) 持续交付
 ### 自测环境发布流程
 ![image](https://github.com/ziyilongwang/k8s-salt/blob/master/docs/ciimage/4.png)
 
-1、当git lab上有代码向dev_test分支发起merge请求，触发自测环境的jenkins sonar扫描；
-2、sonar扫描--针对dev_test分支
-3、单元测试--针对dev_test分支
+当git lab上有代码向dev_test分支发起merge请求，触发自测环境的jenkins sonar扫描；
+sonar扫描--针对dev_test分支
+单元测试--针对dev_test分支
 4、构建自测环境，并运行自测环境--针对dev_test分支
 5、执行接口自动化测试；
 6、接口自动化测试通过后，在自测环境中进行功能测试、新增接口测试，并将新增测试点新增到自动化测试案例库中。
