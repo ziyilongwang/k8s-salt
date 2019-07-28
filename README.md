@@ -356,3 +356,6 @@ linux-node4:
 - [创建第一个K8S应用](docs/app.md)
 - [CoreDNS和Dashboard部署](docs/dashboard.md)
 
+# ci
+
+- [持续集成](docs/ci.md)
