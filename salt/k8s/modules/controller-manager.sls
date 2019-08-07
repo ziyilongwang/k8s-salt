@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 #********************************************
-# Author:       Jason Zhao
-# Email:        shundong.zhao@linuxhot.com
-# Organization: http://www.devopsedu.com/
+# Author:       Long Zhang
+# Email:        392572435@qq.com
 # Description:  Kubernetes Controller Manager
 #********************************************
-{% set k8s_version = "k8s-v1.10.3" %}
+{% set k8s_version = "k8s-v1.15.2" %}
 
 kube-controller-manager-bin:
   file.managed:
