@@ -145,21 +145,21 @@ sed -i 's/SELINUX=enforcing/SELINUX=disabled/g'  /etc/selinux/config
 [root@linux-node1 srv]# /bin/cp /srv/master /etc/salt/master
 ```
 
-2.4 下载二进制文件，也可以自行官方下载，为了方便国内用户访问，请在百度云盘下载,下载k8s-v1.10.3-auto.zip。
+2.4 下载二进制文件，也可以自行官方下载，为了方便国内用户访问，请在百度云盘下载,下载k8s-v1.15.2.tar.gz。
 下载完成后，将文件移动到/srv/salt/k8s/目录下，并解压
-Kubernetes二进制文件下载地址： https://pan.baidu.com/s/1snuyP5GNppcuXxUqEcwkAg
+Kubernetes二进制文件下载地址： https://pan.baidu.com/s/1-ZxmZ0LFrGQJVPXQLu1apQ
 
 ```
 [root@linux-node1 ~]# cd /srv/salt/k8s/
-[root@linux-node1 k8s]# unzip k8s-v1.10.3-auto.zip 
-[root@linux-node1 k8s]# rm -f k8s-v1.10.3-auto.zip 
+[root@linux-node1 k8s]# tar -xzvf k8s-v1.15.2.tar.gz
+[root@linux-node1 k8s]# rm -f k8s-v1.15.2.tar.gz
 [root@linux-node1 k8s]# ls -l files/
 total 0
 drwxr-xr-x. 2 root root  94 Jun  3 19:12 cfssl-1.2
 drwxr-xr-x. 2 root root 195 Jun  3 19:12 cni-plugins-amd64-v0.7.0
 drwxr-xr-x. 2 root root  33 Jun  3 19:12 etcd-v3.3.1-linux-amd64
 drwxr-xr-x. 2 root root  47 Jun  3 19:12 flannel-v0.10.0-linux-amd64
-drwxr-xr-x. 3 root root  17 Jun  3 19:12 k8s-v1.10.3
+drwxr-xr-x. 3 root root  17 Jun  3 19:12 k8s-v1.15.2
 
 ```
 
