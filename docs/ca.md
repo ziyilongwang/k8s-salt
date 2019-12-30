@@ -45,6 +45,14 @@
 }
 ```
 
+注：
+
+① signing ：表示该证书可用于签名其它证书，生成的 ca.pem 证书中CA=TRUE ；
+
+② server auth ：表示 client 可以用该该证书对 server 提供的证书进行验证；
+
+③ client auth ：表示 server 可以用该该证书对 client 提供的证书进行验证；
+
 
 ## 4.创建用来生成 CA 证书签名请求（CSR）的 JSON 配置文件
 ```
@@ -66,6 +74,12 @@
   ]
 }
 ```
+注：
+
+① CN： Common Name ，kube-apiserver 从证书中提取该字段作为请求的用户名(User Name)，浏览器使用该字段验证网站是否合法；
+② O： Organization ，kube-apiserver 从证书中提取该字段作为请求用户所属的组(Group)；
+③ kube-apiserver 将提取的 User、Group 作为 RBAC 授权的用户标识；
+
 
 ## 5.生成CA证书（ca.pem）和密钥（ca-key.pem）
 ```
